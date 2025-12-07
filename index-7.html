@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Deepanshi 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Playfair Display', serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  background: linear-gradient(-45deg, #ff3366, #ff6699, #ff99aa, #ffccd9);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+@keyframes gradientShift {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+.page { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+.active { display:flex; }
+.fadeSlow { animation: fadeInSlow 2.5s ease forwards; }
+@keyframes fadeInSlow { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.float { animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
+h1 { font-size: 64px; line-height:1.4; text-shadow: 0 0 40px rgba(255,255,255,0.7); }
+.smallText { font-size: 50px; }
+.flicker { animation: flicker 2s infinite; }
+@keyframes flicker { 0%, 100% { opacity:1; } 50% { opacity:0.5; } }
+.revealButton {
+  padding: 12px 30px;
+  font-size: 26px;
+  border: none;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #ff3f6e;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,255,255,0.6);
+  transition: 0.3s ease;
+}
+.revealButton:hover { transform: scale(1.1); }
+.hidden { opacity:0; }
+.fadeText { animation: fadeInText 2s forwards; }
+@keyframes fadeInText { from {opacity:0;} to {opacity:1;} }
+.hearts, .sparkles { position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-1; }
+.heart, .spark { position:absolute; width:30px; height:30px; border-radius:50%; }
+.heart { background: rgba(255,0,80,0.8); transform: rotate(45deg); animation: floatHearts 10s linear infinite; }
+.heart::before, .heart::after {
+  content:""; position:absolute; width:30px; height:30px; background:inherit; border-radius:50%;
+}
+.heart::before{ top:-15px; left:0; }
+.heart::after{ left:15px; top:0; }
+@keyframes floatHearts {
+  0% { transform:translateY(0) rotate(45deg); opacity:1; }
+  100% { transform:translateY(-120vh) rotate(45deg); opacity:0; }
+}
+.spark { background: rgba(255,255,255,0.8); width:5px; height:5px; border-radius:50%; animation: floatSpark 8s linear infinite; }
+@keyframes floatSpark {
+  0% { transform:translateY(0); opacity:1; }
+  100% { transform:translateY(-100vh); opacity:0; }
+}
+.page7Bg { background: linear-gradient(135deg, #b8860b, #ffd700, #fff1b8); background-size: 400% 400%; animation: goldShift 10s ease infinite; }
+@keyframes goldShift {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+</style>
+</head>
+<body>
+<div class="page active fadeSlow" id="page1">
+  <h1 class="float">💖 HAPPY BIRTHDAY<br><span class="name">Deepanshi</span> 🥳</h1>
+</div>
+<div class="page flicker" id="page2"><h1>A small gift only for you 💝</h1></div>
+<div class="page" id="page3"><h1 class="fadeSlow">Hope this year brings a lot of happy moments ❣️</h1></div>
+<div class="page" id="page4"><h1>It has been a long time since we talked like this, but…</h1></div>
+<div class="page" id="page5">
+  <button id="revealBtn" class="revealButton">Click</button>
+  <h1 id="pg5text" class="smallText hidden">
+    You are gorgeous,gorgeous as moon😌<br>
+    Your eyes, your smile, your personality,<br>
+    and everything about you is unforgettable 💖
+  </h1>
+</div>
+<div class="page" id="page6"><h1 class="float">hope you liked this small surprise 🤌</h1></div>
+<div class="page page7Bg" id="page7"><h1 class="fadeSlow">A VERY HAPPY BIRTHDAY AGAIN ❤️</h1></div>
+<div class="hearts"></div>
+<div class="sparkles"></div>
+<script>
+const pages = document.querySelectorAll('.page');
+let current = 0;
+let intervalTime = 4000;
+let canAutoSwitch = true;
+function showNextPage() {
+  if (!canAutoSwitch) return;
+  pages[current].classList.remove('active');
+  current = (current + 1) % pages.length;
+  pages[current].classList.add('active');
+}
+let pageInterval = setInterval(showNextPage, intervalTime);
+const btn = document.getElementById("revealBtn");
+const pg5text = document.getElementById("pg5text");
+btn.onclick = () => {
+  btn.style.display = "none";
+  pg5text.classList.remove("hidden");
+  pg5text.classList.add("fadeText");
+  setTimeout(() => { canAutoSwitch = true; }, 4000);
+};
+function checkPage5() {
+  if (current === 4 && btn.style.display !== "none") { canAutoSwitch = false; }
+}
+setInterval(checkPage5, 200);
+for(let i=0;i<30;i++){
+  let h = document.createElement("div");
+  h.classList.add("heart");
+  h.style.left = Math.random()*100 + "vw";
+  h.style.top = Math.random()*100 + "vh";
+  let scale = Math.random() * 1.5 + 0.5;
+  let opacity = Math.random() * 0.7 + 0.5;
+  h.style.transform = `scale(${scale}) rotate(45deg)`;
+  h.style.opacity = opacity;
+  h.style.animationDuration = (Math.random() * 6 + 4) + "s";
+  h.style.animationDelay = Math.random() * 5 + "s";
+  document.querySelector(".hearts").appendChild(h);
+}
+for(let i=0;i<50;i++){
+  let s = document.createElement("div");
+  s.classList.add("spark");
+  s.style.left = Math.random()*100 + "vw";
+  s.style.top = Math.random()*100 + "vh";
+  let size = Math.random()*4+2;
+  s.style.width = size + "px";
+  s.style.height = size + "px";
+  s.style.opacity = Math.random()*0.7 + 0.5;
+  s.style.animationDuration = (Math.random()*6+4) + "s";
+  s.style.animationDelay = Math.random()*5 + "s";
+  document.querySelector(".sparkles").appendChild(s);
+}
+</script>
+</body>
+</html>
